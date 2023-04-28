@@ -1,0 +1,20 @@
+.NavHeader{
+    padding: 25px;
+    background-color: #808586;
+}
+
+.ListHeader{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.ItemHeader{
+    color: #092685;
+    font-weight: 900;
+    font-size: 20px;
+}
+.ItemHeader:hover{
+    color: #f8f1f1;
+}
