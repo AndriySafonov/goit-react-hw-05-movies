@@ -6,11 +6,13 @@ import { MovieBox, MovieImg, MovieInfo, MovieAdditionalBox, MovieGenres, MovieAd
 import { BackButton } from "components/BackButton/BackButton";
 
 const MovieDetails = () => {
+  // Використовуємо хуки для отримання movieId та поточного шляху роутера
   const { movieId } = useParams();
   const [movie, setMovie] = useState([]);
   const { pathname, search } = useLocation();
   const fromPage = `${pathname}${search}`;
   
+  // Використовуємо хук useEffect для отримання даних про фільм з API
   useEffect(() => {
     getMovieById();
 
@@ -26,18 +28,23 @@ const MovieDetails = () => {
     };
   }, [movieId]);
 
+   // Якщо дані про фільм ще не завантажилися, повертаємо null
   if (!movie) {
     return null;
   }
 
+   // Витягуємо дані про фільм
   const { poster_path, title, vote_average, overview, genres, release_date } = movie;
 
+  // Формуємо URL для зображення фільму
   const imagePath = poster_path
     ? BASE_IMAGE_URL + poster_path
     : PlACEHOLDER_POSTER_URL;
 
+  // Витягуємо рік виходу фільму
   const year = release_date ? release_date.slice(0, 4) : `No year`;
 
+  // Функція для розрахунку рейтингу фільму в процентах
   const userScore = () => {
     return Math.round(vote_average * 10);
   }

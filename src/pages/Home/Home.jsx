@@ -6,26 +6,29 @@ import { HomeTitle, MoviesList } from "./Home.styled";
 import { MoviesItem } from "components/MoviesItem/MoviesItem";
 
 const Home = () => {
+  /* Створюємо стан для списку популярних фільмів та індикатора завантаження */
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  /* Використовуємо хук useEffect для отримання списку 
+  популярних фільмів при завантаженні сторінки */
   useEffect(() => {
-    setIsLoading(true);
-    getTrendinngMovies();
+    setIsLoading(true);// Встановлюємо індикатор завантаження
+    getTrendinngMovies();// Отримуємо список популярних фільмів
 
     async function getTrendinngMovies() {
       try {
         const fetchMovies = await API.fetchTrendingMovies();
         console.log(fetchMovies);
-        setTrendingMovies(fetchMovies);
+        setTrendingMovies(fetchMovies);// Оновлюємо стан зі списком фільмів
 
-      } catch (error) {
+      } catch (error) {// Обробляємо помилки виконання запиту до API
         console.log(error);
       } finally {
-        setIsLoading(false);
+        setIsLoading(false);// Вимикаємо індикатор завантаження
       };
     };
-  }, []);
+  }, []);// Передаємо пустий масив залежностей, щоб хук виконався тільки при завантаженні сторінки
 
   return (
     <main>

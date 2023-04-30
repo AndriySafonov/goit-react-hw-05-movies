@@ -8,6 +8,7 @@ const apiInstance = axios.create({
     },
 });
 
+// функція, яка отримує список актуальних фільмів за добу з TMDb та повертає їх у вигляді масиву об'єктів
 async function fetchTrendingMovies() {
     const response = await apiInstance.get('trending/movie/day');
      
@@ -20,12 +21,14 @@ async function fetchTrendingMovies() {
     return trendingMovies;
 };
 
+//функція, яка отримує деталі конкретного фільму за його id та повертає їх у вигляді об'єкта
 async function fetchMovieById(id) {
     const { data } = await apiInstance.get(`movie/${id}`);
 
     return data;
 }
 
+//функція, яка шукає фільми за заданим запитом та повертає їх у вигляді масиву об'єктів
 async function fetchSearchMovies(query) {
     const response = await apiInstance.get(`search/movie?query=${query}`);
 
@@ -38,6 +41,7 @@ async function fetchSearchMovies(query) {
     return searchMovies;
 }
 
+// функція, яка отримує каст фільму за його id та повертає їх у вигляді масиву об'єктів
 async function fetchMovieCredits(id) {
     const response = await apiInstance.get(`movie/${id}/credits`);
 
@@ -50,6 +54,7 @@ async function fetchMovieCredits(id) {
     return cast;
 }
 
+// функція, яка отримує рецензії на фільм за його id та повертає їх у вигляді масиву об'єктів
 async function fetchMovieReviews(id) {
     const response = await apiInstance.get(`movie/${id}/reviews`);
 
@@ -58,6 +63,7 @@ async function fetchMovieReviews(id) {
     return reviews;
 };
 
+//об'єкт, що містить всі функції, які можна використовувати для звернень до API
 const api = {
     fetchTrendingMovies,
     fetchMovieById,

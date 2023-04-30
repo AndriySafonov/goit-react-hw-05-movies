@@ -6,9 +6,15 @@ import { CastItem } from "./CastItem/CastItem";
 import { CastList } from "./Cast.styled";
 
 const Cast = () => { 
+  /*  "movieId" отримується з URL-адреси за допомогою хука "useParams" */
   const { movieId } = useParams(); 
   const [cast, setCast] = useState([]);
 
+  /* "useEffect" викликає функцію "getMovieCredits" при 
+  кожній зміні значення "movieId". Ця функція отримує 
+  список акторів з API за допомогою функції 
+  "fetchMovieCredits", обрізає список до перших 16 акторів
+   та оновлює стан "cast". */
   useEffect(() => {
     getMovieCredits();
 
@@ -25,7 +31,8 @@ const Cast = () => {
       };
     };
   }, [movieId]);
-
+  
+/*  перевіряm, чи є список акторів відомим і, якщо ні, то повертає null */
   if (!cast) return null;
 
   return (

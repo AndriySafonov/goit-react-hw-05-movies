@@ -7,9 +7,13 @@ const Reviews = () => {
   const { movieId } = useParams(); 
   const [reviews, setReviews] = useState([]);
 
+  /* useEffect() виконує функцію "getMovieReviews" при 
+  кожному оновленні компонента. У цій функції запитуються 
+  відгуки про фільм з API за допомогою методу 
+  "fetchMovieReviews" з імпортованої API. Отримані 
+  відгуки зберігаються в стані за допомогою setReviews(). */
   useEffect(() => {
     getMovieReviews();
-
     async function getMovieReviews() {
         const fetchReviews = await API.fetchMovieReviews(movieId);
         console.log(fetchReviews);

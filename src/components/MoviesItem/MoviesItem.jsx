@@ -2,6 +2,8 @@ import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { MoviesCard, StyledLink, MoviesImg, MoviesCardInfo, MoviesTitle, MoviesVote } from "./MoviesItem.styled";
 
+/*  "MoviesItem" використовує "useLocation" для отримання 
+шляху до поточної сторінки та зберігає його у змінній "fromPage" */
 export const MoviesItem = ({ id, title, imagePath, vote }) => {
     const { pathname, search } = useLocation();
     const fromPage = `${pathname}${search}`;
